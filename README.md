@@ -11,7 +11,7 @@ Project Overview
  System Architecture & Workflow (n8n + Open-Source AI)
 Our solution turns scattered signals into structured, defensible advisories in under 5 seconds using an automated n8n workflow:
 
-[ Data Signals (Weather, Pest, Market, Plots) ] │  [ n8n Chat Trigger Node ] │  [ Open-Source Model via Groq (Llama 3) ] │  [ Extension Officer Handoff (DRAFT ONLY) ] <-- AGENT STOPS HERE │ (Officer Reviews & Approves) │  [ Manual Dispatch to Farmer via (SMS/USSD) ] 
+[ Data Signals (Weather, Pest, Market, Plots) ]  [ n8n Chat Trigger Node ]  [ Open-Source Model via Groq (Llama 3) ]  [ Extension Officer Handoff (DRAFT ONLY) ] <-- AGENT STOPS HERE (Officer Reviews & Approves)  [ Manual Dispatch to Farmer via (SMS/USSD) ] 
 • Signals Ingested: Ingests household plot data (farmers.json), local meteorological forecasts and pest warnings (weather_pest.json), and market aggregation pricing (market_prices.json).
 
 • AI Processing: Evaluates crop growth stages against weather thresholds (e.g, rainfall wash-off risks) and active pest alerts using an open-source model running via Groq.
@@ -31,4 +31,4 @@ Our solution turns scattered signals into structured, defensible advisories in u
 
  Repository Structure
 
-. ├── README.md <-- Submission documentation ├── prompts/ │ └── system_prompt.txt <-- Master system prompt used in the n8n AI Agent node └── data/ ├── farmers.json <-- Sample household plot records ├── weather_pest.json <-- Sample weather & pest alerts └── market_prices.json <-- Sample market aggregation center prices.
+. README.md <-- Submission documentatio prompts/ system_prompt.txt <-- Master system prompt used in the n8n AI Agent node data/ farmers.json <-- Sample household plot records weather_pest.json <-- Sample weather & pest alerts market_prices.json <-- Sample market aggregation center prices.
