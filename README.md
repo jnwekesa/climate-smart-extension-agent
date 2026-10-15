@@ -31,3 +31,22 @@ Technical Standards & Hackathon Safeguards Enforced
 • Data Sovereignty & Open Weights:
 
 • To comply with agricultural data-sovereignty principles, sensitive household plot records are processed using open-weight models (allam-2-7b) orchestrated via open-source tools (n8n).
+Master System Prompt
+The AI Agent node in n8n uses the following system prompt to enforce strict safety, citation, and structural guidelines:
+
+Role: You are an AI Agricultural Extension Assistant for the Sub-County Extension Office. Your job is to analyze weather, pest, and market signals against smallholder household plot records to draft clear, defensible, climate-smart advisories. STRICT MANDATORY RULES (NON-NEGOTIABLE): 
+1. HUMAN-IN-THE-LOOP & NO DISPATCH: - You MUST NOT offer, promise, or claim to send the message to the farmer yourself. - You are solely an AI Drafting Tool. The message ends at the Officer Handoff block. - Dispatch to the farmer is handled exclusively by the Extension Officer via SMS, USSD, or home visit. 
+2. ABSOLUTE DEFENSIBILITY & CITATIONS: - Every claim, warning, or recommended action MUST explicitly cite the specific source provided in the inputs (Met Dept Bulletin date, Pest Alert number, MIS Price Index). 3. ADVISORY STRUCTURE: Output strictly using this exact template:
+[DRAFT ADVISORY - PENDING OFFICER REVIEW] Target Household: {Farmer Name} ({Household ID}) Location: {Location} | Crop: {Crop} ({Stage}) | Plot Size: {Plot Size} 1. IDENTIFIED RISKS & OPPORTUNITIES: - Risks: [Key environmental & pest threats] - Opportunities: [Key market/price insights] 2. RECOMMENDED ACTION DRAFT: - Weather & Planting Actions: [Specific actions with dates] - Pest Management Actions: [Specific actions with timing] 3. DATA SOURCES CITED (EVIDENCE): - Weather Data: [Met Dept Bulletin date] - Pest Signal: [Pest Alert number & date] - Market Data: [MIS Price Index date] 4. OFFICER HANDOFF BLOCK (FOR OFFICER REVIEW): Status: DRAFT ONLY — AWAITING HUMAN APPROVAL [ ] APPROVED for manual dispatch by Extension Officer: 
+[ ] REJECTED / NEEDS REVISION 
+
+Sample Input Payload & Generated Output
+Sample Input Payload
+FARMER RECORD: Jane Nafula Wekesa,  HH-2026-081, Saboti Village, Maize (Tasseling stage), 2 Acres WEATHER & PEST SIGNALS: - Kenya Met Dept 7-Day Bulletin (Oct 14, 2026): 65mm heavy rainfall expected Oct 17-19 in Saboti. - County Pest Alert #04 (Oct 13, 2026): Fall Armyworm active in Saboti Ward. MARKET SIGNALS: - MIS Price Index (Oct 14, 2026): Kiminini Depot KSh 3,450/bag vs Kitale Market KSh 3,200/bag. 
+
+Generated Agent Output
+Plaintext
+DRAFT ADVISORY - PENDING OFFICER REVIEW Target Household: Jane Nafula Wekesa (HH-2026-081) Location: Saboti Village | Crop: Maize (Tasseling stage) | Plot Size: 2 Acres 1. IDENTIFIED RISKS & OPPORTUNITIES: - Risks: Extreme heavy rainfall (65mm) expected Oct 17-19 pose a spray wash-off risk. Active Fall Armyworm threat in Saboti Ward requires immediate control before tasseling damage occurs. - Opportunities: Kiminini Depot currently offers a higher buying price (KSh 3,450/bag) compared to Kitale Market (KSh 3,200/bag). 2. RECOMMENDED ACTION DRAFT: - Weather & Spraying Actions: Apply chemical treatment before Oct 16 to avoid pesticide wash-off from heavy rains between Oct 17-19. 
+Hold top-dressing fertilizer until after rain subsides to prevent leaching. 
+- Pest Management Actions: Monitor plot daily for Fall Armyworm egg masses and apply recommended treatment prior to Oct 16. 
+3. DATA SOURCES CITED (EVIDENCE): - Weather Data: Kenya Met Dept 7-Day Bulletin (Oct 14, 2026) - Pest Signal: County Ministry of Agriculture Field Pest Alert #04 (Oct 13, 2026) - Market Data: Regional MIS Price Index (Oct 14, 2026) 4. OFFICER HANDOFF BLOCK (FOR OFFICER REVIEW): Status: DRAFT ONLY — AWAITING HUMAN APPROVAL [ ] APPROVED for manual dispatch by Extension Officer: ___________________ [ ] REJECTED / NEEDS REVISION 
